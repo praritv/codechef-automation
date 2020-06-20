@@ -1,19 +1,30 @@
 from selenium import webdriver
 browser = webdriver.Chrome(executable_path=r"C:\SeleniumDrivers\chromedriver.exe")
+
+#starting of browser session
 browser=webdriver.Chrome()
-time.sleep(10)
+#opening codechef link in the browser
 browser.get("https://codechef.com")
+#Username entry
 username_element=browser.find_element_by_id("edit-name")
-username_element.send_keys("praritvij")
+username_element.send_keys("USER NAME")
+#Password entry
 password_element=browser.find_element_by_id("edit-pass")
-password_element.send_keys("anil@57822")
+password_element.send_keys("PASSWORD")
+#submitting username and password
 browser.find_element_by_id("edit-submit").click()
-browser.get("https://www.codechef.com/submit/TEST")
+#Opening the submission page for the problem
+browser.get("https://www.codechef.com/submit/PROBLEM-NAME")
+#for slow internet connection
 time.sleep(10)
+#for opening toggle editor
 browser.find_element_by_id("edit_area_toggle_checkbox_edit-program").click()
+#solution is the file the user wants to submit as solution to the problem
 with open("solution.cpp.txt",'r') as f:
     code=f.read()
 code_element=browser.find_element_by_id('edit-program')
 code_element.send_keys(code)
-browser.find_element_by_xpath('//*[@id="edit-language"]/option[2]')
+#replace i with language option the solution is to be submitted in
+browser.find_element_by_xpath('//*[@id="edit-language"]/option[i]')
+
 browser.find_element_by_id("edit-submit").click()
